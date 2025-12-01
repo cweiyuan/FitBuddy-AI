@@ -1,9 +1,12 @@
 // index.js
 
-// Placeholder function
-function placeholder() {
-    console.log('This is a placeholder function.');
-}
+const express = require('express');
+const app = express();
 
-// Export the function
-module.exports = placeholder;
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
