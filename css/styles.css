@@ -177,8 +177,9 @@ main {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 600px;
-    max-width: 700px;
+    height: 92vh;
+    min-height: 600px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -513,7 +514,9 @@ footer::before {
     }
 
     .chat-container {
-        height: 500px;
+        height: 75vh;
+        min-height: 400px;
+        max-width: 98vw;
     }
 
     .features-grid {
