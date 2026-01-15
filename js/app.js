@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    guardrailsInput: message,
-                    timestamp: new Date().toISOString()
+                    guardrailsInput: message
                 })
             });
 
