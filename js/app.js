@@ -3,6 +3,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
     const loadingIndicator = document.getElementById('loadingIndicator');
+    const motivationQuote = document.getElementById('motivationQuote');
+
+    // Motivational Quotes Array
+    const motivationalQuotes = [
+        "Your body is your greatest project - invest in it.",
+        "Fitness is not a destination, it's a lifestyle journey.",
+        "Every rep brings you closer to your goals.",
+        "Believe in yourself and you're already halfway there.",
+        "The only bad workout is the one you didn't do.",
+        "Transform your body, transform your life.",
+        "Pain is temporary, pride is forever.",
+        "You are stronger than you think.",
+        "Success is the sum of small efforts repeated day in and day out.",
+        "Your potential is limitless - keep pushing.",
+        "Sweat now, shine later.",
+        "Great things never come from comfort zones.",
+        "Be the best version of yourself.",
+        "No excuses, just results.",
+        "Every step forward is a victory."
+    ];
+
+    // Rotate motivational quotes every 6 seconds
+    let currentQuoteIndex = 0;
+    function rotateQuote() {
+        if (motivationQuote) {
+            motivationQuote.style.animation = 'none';
+            setTimeout(() => {
+                currentQuoteIndex = (currentQuoteIndex + 1) % motivationalQuotes.length;
+                motivationQuote.textContent = motivationalQuotes[currentQuoteIndex];
+                motivationQuote.style.animation = 'fadeInOut 5s ease-in-out infinite';
+            }, 50);
+        }
+    }
+    setInterval(rotateQuote, 6000);
 
     // N8N Webhook URL
     const WEBHOOK_URL = 'https://w3naut.app.n8n.cloud/webhook/99c8f926-6555-4aab-a06d-22f827ec00b3';
