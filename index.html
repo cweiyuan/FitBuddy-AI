@@ -3,24 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather & Stock App</title>
+    <title>FitBuddy AI - Your Personal AI Fitness Trainer</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Weather & Stock App</h1>
-        <button id="theme-switcher">Switch Theme</button>
-    </header>
-    <main>
-        <section id="weather">
-            <h2>Weather</h2>
-            <div id="weather-output">Loading weather...</div>
-        </section>
-        <section id="stocks">
-            <h2>Stock Quotes</h2>
-            <div id="stock-output">Loading stock data...</div>
-        </section>
-    </main>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1>FitBuddy AI</h1>
+                <p class="tagline">Your Personal AI Fitness Coach</p>
+                <div class="hero-description">
+                    <h2>Problem Statement</h2>
+                    <p>In the current state of the fitness industry, personal trainers are often inaccessible due to high costs and rigid scheduling. Moreover, many individuals face 'gym intimidation' or lack of the knowledge to build and plan for an effective/efficient workout session. Traditional apps like 'Nike Training Club' often provide static, non-adaptive plans that fail to account for a user's current condition.</p>
+                    
+                    <h2>Our Solution</h2>
+                    <p>FitBuddy AI is a web-based, AI-powered conversational agent designed to elevate personal training. It provides instant, adaptive workout routines, and form correction tips. Unlike static apps, FitBuddy AI allows users to negotiate time constraints in real-time.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <section class="chat-section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>Chat with FitBuddy AI</h3>
+                        <p class="chat-subtitle">Ask about workouts, fitness plans, and form tips</p>
+                    </div>
+                    
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <p>👋 Hello! I'm FitBuddy AI, your personal fitness coach. Tell me about your fitness goals, current level, and available time, and I'll create a personalized workout plan for you!</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-area">
+                        <input 
+                            type="text" 
+                            id="userInput" 
+                            class="chat-input" 
+                            placeholder="Ask me about workouts, fitness plans..."
+                            autocomplete="off"
+                        >
+                        <button id="sendBtn" class="send-btn">Send</button>
+                    </div>
+
+                    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <h2>Why Choose FitBuddy AI?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Adaptive Workouts</h3>
+                        <p>Real-time adjustments based on your fitness level and feedback</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⏰</div>
+                        <h3>Time Flexible</h3>
+                        <p>Plans that fit your schedule, from 15 minutes to full sessions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Always Available</h3>
+                        <p>24/7 access to your personal fitness coach</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💪</div>
+                        <h3>Form Guidance</h3>
+                        <p>Detailed form correction tips for proper technique</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 FitBuddy AI. Transform your fitness journey today.</p>
+        </footer>
+    </div>
+
     <script src="js/app.js"></script>
 </body>
 </html>

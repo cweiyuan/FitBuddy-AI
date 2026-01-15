@@ -1,41 +1,85 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const weatherOutput = document.getElementById('weather-output');
-    const stockOutput = document.getElementById('stock-output');
-    const themeSwitcher = document.getElementById('theme-switcher');
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const loadingIndicator = document.getElementById('loadingIndicator');
 
-    // Fetch weather data
-    async function fetchWeather() {
+    // N8N Webhook URL
+    const WEBHOOK_URL = 'https://w3naut.app.n8n.cloud/webhook/99c8f926-6555-4aab-a06d-22f827ec00b3';
+
+    // Send message function
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        
+        if (!message) return;
+
+        // Add user message to chat
+        addMessageToChat(message, 'user');
+        userInput.value = '';
+
+        // Show loading indicator
+        loadingIndicator.style.display = 'flex';
+        sendBtn.disabled = true;
+
         try {
-            weatherOutput.textContent = 'Loading weather data...';
-            const response = await fetch('https://api.weatherapi.com/v1/current.json?key=4955ef7ef85c45c7a8873851250112&q=London');
-            if (!response.ok) throw new Error('Weather API error');
+            // Send to N8N webhook
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    timestamp: new Date().toISOString()
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
-            weatherOutput.textContent = `Weather in ${data.location.name}: ${data.current.condition.text}, ${data.current.temp_c}°C`;
+            
+            // Handle response from N8N
+            const botResponse = data.response || data.message || 'I received your message and will provide personalized workout recommendations.';
+            addMessageToChat(botResponse, 'bot');
+
         } catch (error) {
-            weatherOutput.textContent = 'Failed to load weather data.';
+            console.error('Error:', error);
+            const errorMessage = 'I apologize for the technical difficulty. Please try again in a moment. In the meantime, tell me about your fitness goals!';
+            addMessageToChat(errorMessage, 'bot');
+        } finally {
+            loadingIndicator.style.display = 'none';
+            sendBtn.disabled = false;
+            userInput.focus();
         }
     }
 
-    // Fetch stock data
-    async function fetchStocks() {
-        try {
-            stockOutput.textContent = 'Loading stock data...';
-            const response = await fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=4955ef7ef85c45c7a8873851250112');
-            if (!response.ok) throw new Error('Stock API error');
-            const data = await response.json();
-            const stockInfo = data["Global Quote"];
-            stockOutput.textContent = `AAPL: $${stockInfo["05. price"]} (${stockInfo["10. change percent"]})`;
-        } catch (error) {
-            stockOutput.textContent = 'Failed to load stock data.';
-        }
+    // Add message to chat display
+    function addMessageToChat(message, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        
+        const messageParagraph = document.createElement('p');
+        messageParagraph.textContent = message;
+        
+        messageDiv.appendChild(messageParagraph);
+        chatMessages.appendChild(messageDiv);
+
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Theme switcher
-    themeSwitcher.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
+    // Event listeners
+    sendBtn.addEventListener('click', sendMessage);
+
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
     });
 
-    // Initialize
-    fetchWeather();
-    fetchStocks();
+    // Focus input on load
+    userInput.focus();
 });
