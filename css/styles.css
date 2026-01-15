@@ -59,9 +59,9 @@ main {
 .chat-container {
     background: rgba(20, 20, 50, 0.4);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(147, 112, 219, 0.2);
+    border: 1px solid rgba(147, 112, 219, 0.4);
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(147, 112, 219, 0.25), 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -73,10 +73,22 @@ main {
 .chat-header {
     background: rgba(147, 112, 219, 0.1);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(147, 112, 219, 0.2);
+    border-bottom: 1px solid rgba(147, 112, 219, 0.4);
+    box-shadow: 0 2px 10px rgba(147, 112, 219, 0.15);
     color: #e0e0e0;
     padding: 1.5rem;
     text-align: center;
+    position: relative;
+}
+
+.chat-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.5), transparent);
 }
 
 .chat-header h3 {
@@ -127,13 +139,13 @@ main {
 .user-message p {
     background: rgba(147, 112, 219, 0.3);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(147, 112, 219, 0.4);
+    border: 1px solid rgba(147, 112, 219, 0.5);
     color: #e0e0e0;
     padding: 0.8rem 1.2rem;
     border-radius: 15px;
     max-width: 80%;
     word-wrap: break-word;
-    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.2);
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.2), 0 4px 15px rgba(147, 112, 219, 0.15);
 }
 
 .bot-message {
@@ -144,7 +156,7 @@ main {
 .bot-message p {
     background: rgba(255, 107, 157, 0.15);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 107, 157, 0.3);
+    border: 1px solid rgba(255, 107, 157, 0.4);
     color: #ffffff;
     padding: 1.2rem;
     border-radius: 15px;
@@ -155,7 +167,7 @@ main {
     line-height: 1.9;
     font-size: 0.95rem;
     font-weight: 500;
-    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.15);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.2), 0 4px 15px rgba(255, 107, 157, 0.15);
 }
 
 .bot-message p a {
@@ -177,14 +189,25 @@ main {
     color: #b19cd9;
 }
 
-/* Chat Input */
 .chat-input-area {
     display: flex;
     gap: 0.5rem;
     padding: 1.5rem;
     background: rgba(147, 112, 219, 0.1);
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(147, 112, 219, 0.2);
+    border-top: 1px solid rgba(147, 112, 219, 0.4);
+    box-shadow: 0 -2px 10px rgba(147, 112, 219, 0.15);
+    position: relative;
+}
+
+.chat-input-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.5), transparent);
 }
 
 .chat-input {
@@ -198,6 +221,7 @@ main {
     color: #e0e0e0;
     transition: all 0.3s ease;
     backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.1);
 }
 
 .chat-input::placeholder {
@@ -207,24 +231,24 @@ main {
 .chat-input:focus {
     border-color: #9370db;
     background: rgba(30, 30, 60, 0.8);
-    box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.5), 0 0 10px rgba(147, 112, 219, 0.3);
 }
 
 .send-btn {
     padding: 0.8rem 1.5rem;
     background: linear-gradient(135deg, #9370db 0%, #ff6b9d 100%);
     color: white;
-    border: none;
+    border: 1px solid rgba(255, 181, 224, 0.5);
     border-radius: 25px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.4);
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.3), 0 4px 15px rgba(147, 112, 219, 0.4);
 }
 
 .send-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(147, 112, 219, 0.6);
+    box-shadow: 0 0 25px rgba(147, 112, 219, 0.6), 0 6px 25px rgba(147, 112, 219, 0.6);
 }
 
 .send-btn:active {
@@ -275,8 +299,8 @@ main {
     padding: 3rem 2rem;
     border-radius: 20px;
     margin-bottom: 3rem;
-    border: 1px solid rgba(147, 112, 219, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    box-shadow: 0 0 25px rgba(147, 112, 219, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .features h2 {
@@ -301,16 +325,16 @@ main {
     border-radius: 15px;
     background: rgba(147, 112, 219, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(147, 112, 219, 0.2);
+    border: 1px solid rgba(147, 112, 219, 0.3);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.15), 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card:hover {
     transform: translateY(-10px);
     background: rgba(147, 112, 219, 0.2);
-    border-color: rgba(147, 112, 219, 0.4);
-    box-shadow: 0 8px 25px rgba(147, 112, 219, 0.3);
+    border-color: rgba(147, 112, 219, 0.5);
+    box-shadow: 0 0 25px rgba(147, 112, 219, 0.3), 0 8px 25px rgba(147, 112, 219, 0.3);
 }
 
 .feature-icon {
@@ -337,11 +361,23 @@ main {
 footer {
     background: rgba(10, 14, 39, 0.7);
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(147, 112, 219, 0.2);
+    border-top: 1px solid rgba(147, 112, 219, 0.4);
+    box-shadow: 0 -2px 10px rgba(147, 112, 219, 0.15);
     color: #e0e0e0;
     text-align: center;
     padding: 2rem;
     margin-top: 2rem;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.5), transparent);
 }
 
 /* Responsive */
