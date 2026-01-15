@@ -81,7 +81,26 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.className = `message ${sender}-message`;
         
         const messageParagraph = document.createElement('p');
-        messageParagraph.textContent = message;
+        
+        // For bot messages, convert markdown and line breaks to HTML
+        if (sender === 'bot') {
+            // Replace line breaks with <br>
+            let formatted = message.replace(/\n/g, '<br>');
+            
+            // Convert markdown bold (**text**) to <strong>
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+            // Convert markdown italic (*text*) to <em>
+            formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            // Convert URLs to clickable links
+            formatted = formatted.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color: inherit; text-decoration: underline;">$1</a>');
+            
+            messageParagraph.innerHTML = formatted;
+        } else {
+            // For user messages, just use plain text
+            messageParagraph.textContent = message;
+        }
         
         messageDiv.appendChild(messageParagraph);
         chatMessages.appendChild(messageDiv);
