@@ -56,8 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            // Handle response from N8N - check multiple possible response formats
-            const botResponse = data.response || data.message || data.output || data.body || 'Great! Your request was processed successfully. Tell me more about your fitness goals!';
+            // Handle response from N8N - prioritize output, then response, then message
+            const botResponse = data.output || data.response || data.message || data.body || 'Great! Your request was processed successfully. Tell me more about your fitness goals!';
+            console.log('Bot Response:', botResponse);
             addMessageToChat(botResponse, 'bot');
 
         } catch (error) {
