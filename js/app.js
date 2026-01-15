@@ -34,19 +34,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
+            console.log('Response Status:', response.status);
+            console.log('Response OK:', response.ok);
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
+            console.log('Response Data:', data);
             
-            // Handle response from N8N
-            const botResponse = data.response || data.message || 'I received your message and will provide personalized workout recommendations.';
+            // Handle response from N8N - check multiple possible response formats
+            const botResponse = data.response || data.message || data.output || JSON.stringify(data) || 'I received your message and will provide personalized workout recommendations.';
             addMessageToChat(botResponse, 'bot');
 
         } catch (error) {
             console.error('Error:', error);
-            const errorMessage = 'I apologize for the technical difficulty. Please try again in a moment. In the meantime, tell me about your fitness goals!';
+            console.error('Error Message:', error.message);
+            console.error('Webhook URL:', WEBHOOK_URL);
+            
+            // Show detailed error for debugging
+            const errorMessage = `Error: ${error.message}. Make sure your n8n webhook is active and accessible.`;
             addMessageToChat(errorMessage, 'bot');
         } finally {
             loadingIndicator.style.display = 'none';
