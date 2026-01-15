@@ -118,18 +118,36 @@ main {
     justify-content: flex-start;
 }
 
+.bot-message p {
+    background-color: #e9ecef;
+    color: #333;
+    padding: 1.2rem;
+    border-radius: 15px;
+    max-width: 85%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    line-height: 1.9;
+    font-size: 0.95rem;
+}
+
 .bot-message p a {
     color: #667eea;
     text-decoration: underline;
+    word-break: break-all;
 }
 
 .bot-message p strong {
     font-weight: 700;
     color: #333;
+    display: block;
+    margin-top: 0.8rem;
+    margin-bottom: 0.3rem;
 }
 
 .bot-message p em {
     font-style: italic;
+    color: #555;
 }
 
 /* Chat Input */
