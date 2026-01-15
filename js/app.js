@@ -22,16 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
         sendBtn.disabled = true;
 
         try {
-            // Send to N8N webhook
+            // Send to N8N webhook - send in multiple formats for compatibility
             const response = await fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    guardrailsInput: message,
                     body: {
                         chatInput: message
-                    }
+                    },
+                    message: message
                 })
             });
 
