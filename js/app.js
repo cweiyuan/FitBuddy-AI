@@ -41,11 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const data = await response.json();
-            console.log('Response Data:', data);
+            // Try to parse JSON, but handle empty responses
+            let data = {};
+            const responseText = await response.text();
+            console.log('Response Text:', responseText);
+            
+            if (responseText) {
+                try {
+                    data = JSON.parse(responseText);
+                    console.log('Response Data:', data);
+                } catch (e) {
+                    console.log('Response is not JSON:', responseText);
+                    data = { message: responseText };
+                }
+            }
             
             // Handle response from N8N - check multiple possible response formats
-            const botResponse = data.response || data.message || data.output || JSON.stringify(data) || 'I received your message and will provide personalized workout recommendations.';
+            const botResponse = data.response || data.message || data.output || data.body || 'Great! Your request was processed successfully. Tell me more about your fitness goals!';
             addMessageToChat(botResponse, 'bot');
 
         } catch (error) {
@@ -54,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Webhook URL:', WEBHOOK_URL);
             
             // Show detailed error for debugging
-            const errorMessage = `Error: ${error.message}. Make sure your n8n webhook is active and accessible.`;
+            const errorMessage = `Error: ${error.message}. Make sure your n8n webhook is returning a JSON response with a "message" or "response" field.`;
             addMessageToChat(errorMessage, 'bot');
         } finally {
             loadingIndicator.style.display = 'none';
