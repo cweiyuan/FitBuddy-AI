@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+    color: #ffffff;
     line-height: 1.6;
 }
 
@@ -18,41 +18,53 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+    color: #00ff88;
     padding: 4rem 2rem;
     text-align: center;
+    border-bottom: 2px solid #00ff88;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
 }
 
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
+    color: #00ff88;
+    text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88;
+    letter-spacing: 2px;
 }
 
 .tagline {
     font-size: 1.5rem;
     margin-bottom: 2rem;
     opacity: 0.95;
-}
-
-.hero-description {
-    max-width: 800px;
-    margin: 2rem auto;
-    background: rgba(255, 255, 255, 0.1);
+    color: #ff00ff;6, 26, 46, 0.6);
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
     backdrop-filter: blur(10px);
     text-align: left;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2), inset 0 0 20px rgba(255, 0, 255, 0.05);
 }
 
 .hero-description h2 {
     font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 0.8rem;
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
 }
 
 .hero-description h2:first-child {
+    margin-top: 0;
+}
+
+.hero-description p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #e0e0e0rst-child {
     margin-top: 0;
 }
 
@@ -68,14 +80,10 @@ main {
 }
 
 /* Chat Section */
-.chat-section {
-    margin-bottom: 3rem;
-}
-
-.chat-container {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+.chat-section {rgba(26, 26, 46, 0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4), inset 0 0 20px rgba(255, 0, 255, 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -85,22 +93,32 @@ main {
 }
 
 .chat-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #1a1a2e 0%, #000000 100%);
+    color: #00ff88;
     padding: 1.5rem;
     text-align: center;
+    border-bottom: 2px solid #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
 }
 
 .chat-header h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+.chat-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ffm: 0.5rem;
 }
 
 .chat-subtitle {
     font-size: 0.9rem;
     opacity: 0.9;
 }
-
+rgba(0, 0, 0, 0.3)
 /* Chat Messages */
 .chat-messages {
     flex: 1;
@@ -128,40 +146,79 @@ main {
 .user-message {
     display: flex;
     justify-content: flex-end;
+    animation: slideInRight 0.4s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .user-message p {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #ff00ff 0%, #ff0080 100%);
+    color: #000000;
     padding: 0.8rem 1.2rem;
-    border-radius: 15px;
+    border-radius: 12px;
     max-width: 80%;
     word-wrap: break-word;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
 }
 
 .bot-message {
     display: flex;
     justify-content: flex-start;
+    animation: slideInLeft 0.4s ease;
+}
+rgba(26, 26, 46, 0.6);
+    border-top: 1px solid rgba(0, 255, 136, 0.2);
 }
 
-.bot-message p {
-    background-color: #e9ecef;
-    color: #333;
-    padding: 0.8rem 1.2rem;
-    border-radius: 15px;
-    max-width: 80%;
-    word-wrap: break-word;
+.chat-input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    transition: all 0.3s ease;
 }
 
-/* Chat Input */
-.chat-input-area {
-    display: flex;
-    gap: 0.5rem;
-    padding: 1.5rem;
-    background: white;
-    border-top: 1px solid #e9ecef;
+.chat-input::placeholder {
+    color: rgba(0, 255, 136, 0.5);
 }
 
+.chat-input:focus {
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.send-btn {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #ff00ff 0%, #ff0080 100%);
+    color: #000000;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.8
 .chat-input {
     flex: 1;
     padding: 0.8rem 1rem;
@@ -195,17 +252,20 @@ main {
 .send-btn:active {
     transform: translateY(0);
 }
-
-/* Loading Indicator */
-.loading-indicator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 1rem;
+rgba(26, 26, 46, 0.4);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
 }
 
-.loading-indicator span {
+.features h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #00ff88;
+    text-shadow: 0 0 15px #00ff88tor span {
     width: 8px;
     height: 8px;
     background-color: #667eea;
@@ -214,29 +274,34 @@ main {
 }
 
 .loading-indicator span:nth-child(2) {
-    animation-delay: 0.2s;
+    animation-delay:2px;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    transition: all 0.3s ease;
 }
 
-.loading-indicator span:nth-child(3) {
-    animation-delay: 0.4s;
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+    border-color: rgba(0, 255, 136, 0.6);
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
 }
 
-@keyframes bounce {
-    0%, 80%, 100% {
-        opacity: 0.3;
-        transform: translateY(0);
-    }
-    40% {
-        opacity: 1;
-        transform: translateY(-10px);
-    }
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
 }
 
-/* Features Section */
-.features {
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: 15px;
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+.feature-card p {
+    color: #b0b0b0us: 15px;
     margin-bottom: 3rem;
 }
 
@@ -265,11 +330,14 @@ main {
     transform: translateY(-10px);
     box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
 }
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
+linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+    color: #00ff88;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 2px solid #ff00ff;
+    box-shadow: 0 -5px 20px rgba(255, 0, 255, 0.2);
+    text-shadow: 0 0 10px #00ff88
 
 .feature-card h3 {
     font-size: 1.3rem;

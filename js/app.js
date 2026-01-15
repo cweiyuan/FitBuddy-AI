@@ -70,6 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
+    // Smooth press animation for send button
+    sendBtn.addEventListener('mousedown', () => {
+        sendBtn.style.transform = 'scale(0.95)';
+    });
+
+    sendBtn.addEventListener('mouseup', () => {
+        sendBtn.style.transform = 'scale(1)';
+    });
+
+    sendBtn.addEventListener('mouseleave', () => {
+        sendBtn.style.transform = 'scale(1)';
+    });
+
     // Event listeners
     sendBtn.addEventListener('click', sendMessage);
 
