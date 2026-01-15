@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    body: {
-                        chatInput: message
-                    },
+                    guardrailsInput: message,
                     timestamp: new Date().toISOString()
                 })
             });
